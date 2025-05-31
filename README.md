@@ -42,7 +42,6 @@ Este proyecto es una aplicación web simple que permite a los usuarios gestionar
 * HTML5
 * CSS3
 * JavaScript (ES6+)
-* [Vite](https://vitejs.dev/) (Si lo estás usando para tu frontend, como sugiere `npm run dev`)
 
 ## 4. Requisitos
 
@@ -55,8 +54,8 @@ Instrucciones paso a paso para configurar el proyecto localmente.
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone [https://github.com/tu-usuario/nombre-de-tu-repo.git](https://github.com/tu-usuario/nombre-de-tu-repo.git)
-    cd nombre-de-tu-repo
+    git clone [git@github.com:jorgeriquelmez/mi_repertorio.git](git@github.com:jorgeriquelmez/mi_repertorio.git)
+    cd mi_repertorio
     ```
 
 2.  **Configurar el Backend:**
@@ -70,7 +69,7 @@ Instrucciones paso a paso para configurar el proyecto localmente.
         ```
     * Crea un archivo `.env` en el directorio `Backend` (al mismo nivel que `server.js`) y añade tus variables de entorno. Puedes basarte en `.env.example`.
         ```
-        PORT=3000
+        PORT=5000
         ```
         *(Asegúrate de que `repertorio.json` esté presente en la carpeta `Backend` con un array JSON vacío `[]` o con algunos datos de ejemplo si quieres.)*
 
