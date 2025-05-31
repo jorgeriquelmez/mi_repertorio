@@ -59,23 +59,46 @@ app.delete("/canciones/:id", (req, res) => {
     res.status(500).json({ error: "Error en el servidor" });
   }
 });
+
 app.put("/canciones/:id", (req, res) => {
-  const { id } = req.params;
-  const actualizacion = req.body;
+  const { id } = req.params; // ID de la URL (string)
+  let actualizacion = req.body; // Datos de actualización del frontend
+  //logica para asegurarse de que el ID es un número
+  if (actualizacion.id !== undefined) {
+    actualizacion.id = parseInt(actualizacion.id);
+    if (isNaN(actualizacion.id)) {
+      return res
+        .status(400)
+        .json({ error: "ID de canción en el cuerpo de solicitud inválido" });
+    }
+  }
+  // Verificar que los campos requeridos estén presentes
 
   if (!actualizacion || !actualizacion.titulo || !actualizacion.artista) {
     return res.status(400).json({ error: "Datos incompletos" });
   }
 
   try {
+    const idNumerico = parseInt(id);
+    if (isNaN(idNumerico)) {
+      return res.status(400).json({ error: "ID de canción en URL inválido" });
+    }
+
     let canciones = JSON.parse(
       fs.readFileSync(path.resolve("./repertorio.json"), "utf-8")
     );
-    const index = canciones.findIndex((cancion) => cancion.id === parseInt(id));
+
+    // Tu findIndex ya usa parseInt, lo cual es correcto
+    const index = canciones.findIndex(
+      (cancion) => parseInt(cancion.id) === idNumerico
+    );
+
     if (index === -1) {
       return res.status(404).json({ error: "Canción no encontrada" });
     }
+
     canciones[index] = { ...canciones[index], ...actualizacion };
+
     fs.writeFileSync(
       path.resolve("./repertorio.json"),
       JSON.stringify(canciones, null, 2)
@@ -86,7 +109,6 @@ app.put("/canciones/:id", (req, res) => {
     res.status(500).json({ error: "Error en el servidor" });
   }
 });
-
 app.listen(
   PORT,
   console.log(`Servidor escuchando en el puerto http://localhost:${PORT}`)
