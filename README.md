@@ -1,4 +1,6 @@
-﻿# mi_repertorio
+ # mi_repertorio
+## Equipo de trabajo Jorge Riquelme / Gerardo Ponce
+ 
  ![foto](https://github.com/jorgeriquelmez/imagenes/blob/main/captura_desafio_mirepertorio.png)
 
 # Aplicación Full Stack para Gestión de Repertorio de Canciones
